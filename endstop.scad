@@ -14,6 +14,12 @@ module endstop() {
         cube([width+2, thickness, height/2], center=true);
       translate([0, 2, 0])
         cube([2.5, thickness, height], center=true);
+		// L. Wing
+		translate([-width/2-1, 1, -height/4])
+			cube([2, thickness+2, height/2], center=true);
+		// R. Wing
+		translate([width/2+1, 1, -height/4])
+			cube([2, thickness+2, height/2], center=true);
     }
     translate([0, 0, 3]) rotate([90, 0, 0]) {
       cylinder(r=m3_wide_radius, h=20, center=true, $fn=12);
