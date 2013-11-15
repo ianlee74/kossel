@@ -22,7 +22,7 @@ module foot() {
       cylinder(r=6.49, h=3*height, center=true, $fn=32);
       for (a = [60:120:359]) {
 	    rotate([0, 0, a]) translate([-12.5, 0, 0])
-          cylinder(r=m3_wide_radius, h=20, center=true, $fn=12);
+          cylinder(r=m3_wide_radius, h=20, center=true, $fn=24);
       }
     }
   }
@@ -32,12 +32,12 @@ module retractable() {
   difference() {
     union() {
       translate([0, 0, height/2])
-        cylinder(r=6, h=height, center=true, $fn=32);
+        cylinder(r=6, h=height, center=true, $fn=100);
       translate([0, -3, height/2])
         cube([12, 6, height], center=true);
       // Lower part on the left.
       translate([-6, 0, height2/2])
-        cylinder(r=6, h=height2, center=true, $fn=32);
+        cylinder(r=6, h=height2, center=true, $fn=100);
       translate([-3, 0, height2/2])
         cube([6, 12, height2], center=true);
       translate([-3, -3, height2/2])
@@ -50,7 +50,7 @@ module retractable() {
     }
     translate([-19, 0, height/2+6]) rotate([0, 15, 0])
       cube([20, 20, height], center=true);
-    cylinder(r=tunnel/2+extra_radius, h=3*height, center=true, $fn=12);
+    cylinder(r=tunnel/2+extra_radius, h=3*height, center=true, $fn=100);
     translate([0, -6, height/2+12])
       cube([tunnel-0.5, 12, height], center=true);
     rotate([0, 0, 30]) translate([0, -6, height/2+22])
