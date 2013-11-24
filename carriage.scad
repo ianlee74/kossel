@@ -27,7 +27,7 @@ module carriage() {
           translate([0, 15, horn_thickness/2])
             cube([separation, 18, horn_thickness], center=true);
           translate([horn_x, 16, horn_thickness/2]) rotate([0, 90, 0])
-            cylinder(r1=14, r2=2.5, h=separation/2-horn_x);
+            cylinder(r1=14, r2=2.5, h=separation/2-horn_x, $fn=100);
         }
       }
       // Belt clamps.
@@ -65,6 +65,10 @@ module carriage() {
                    center=true, $fn=6);
       }
     }
+	 // Screw for endstop adjustment.
+	 translate([2, 10, 2])
+	 rotate([90, 0, 0])
+		#cylinder(r=m3_radius-extra_radius, h=30, center=true, $fn=12);
   }
 }
 
