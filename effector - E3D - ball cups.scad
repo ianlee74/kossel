@@ -13,13 +13,18 @@ ball_dia = 12.7;
 module effector() {
   difference() {
     union() {
-      cylinder(r=offset-2, h=height, center=true, $fn=100);
-      for (a = [60:120:359]) rotate([0, 0, a]) {
-			rotate([0, 0, 30]) 
-			translate([offset-2, 0, 0])
-	  			#cube([28, 30, height], center=true);
-      }
-    }
+      cylinder(r=32, h=height, center=true, $fn=200);
+		torus(25, 8.5);
+
+	  	for (a = [-60:120:299]) rotate([0, 0, a]) {
+      	translate([0, mount_radius+11.5, 6.5])
+			rotate([90,0,0])
+				torus(7,2);
+	   }
+   }
+
+	translate([0, 0, -height])
+      cylinder(r=32, h=height, center=true, $fn=200);
 
       for (a = [60:120:359]) rotate([0, 0, a]) {
 			for (s = [-1, 1]) scale([s, 1, 1]) {
@@ -38,9 +43,18 @@ module effector() {
 		cylinder(r=8.5, h=height, $fn=100);
     for (a = [0:60:359]) rotate([0, 0, a]) {
       translate([0, mount_radius, 0])
-		cylinder(r=m3_wide_radius, h=2*height, center=true, $fn=100);
+			cylinder(r=m3_wide_radius, h=2*height, center=true, $fn=100);
+    }
+    for (a = [-60:120:299]) rotate([0, 0, a]) {
+      translate([0, mount_radius+12, 0])
+			cylinder(r=5, h=2.2*height, center=true, $fn=100);
     }
   }
+}
+
+module torus(r1, r2)
+{
+	rotate_extrude() translate([r1,0,0]) circle(r2);
 }
 
 translate([0, 0, height/2]) effector();
