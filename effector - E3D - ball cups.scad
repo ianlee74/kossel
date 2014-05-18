@@ -10,21 +10,25 @@ cone_r1 = 2.5;
 cone_r2 = 14;
 ball_dia = 12.7;
 
-module effector() {
-  difference() {
-    union() {
-      cylinder(r=32, h=height, center=true, $fn=200);
-		torus(25, 8.5);
+module effector() 
+{
+  	difference() 
+	{
+   	union() 
+		{
+      	cylinder(r=32, h=height, center=true, $fn=200);
+			torus(25, 8.5);
 
-	  	for (a = [-60:120:299]) rotate([0, 0, a]) {
-      	translate([0, mount_radius+11.5, 6.5])
-			rotate([90,0,0])
-				torus(7,2);
-	   }
-   }
+		  	for (a = [-60:120:299]) rotate([0, 0, a]) 
+			{
+      		translate([0, mount_radius+11.5, 6.5])
+				rotate([90,0,0])
+					torus(7,2);
+	   	}
+    	}
 
-	translate([0, 0, -height])
-      cylinder(r=32, h=height, center=true, $fn=200);
+		translate([0, 0, -height])
+      	cylinder(r=40, h=height, center=true, $fn=200);
 
       for (a = [60:120:359]) rotate([0, 0, a]) {
 			for (s = [-1, 1]) scale([s, 1, 1]) {
@@ -36,21 +40,25 @@ module effector() {
 			}
       }
 
-
-    translate([0, 0, push_fit_height-height/2])
-      cylinder(r=hotend_radius, h=height, $fn=100);
-    translate([0, 0, -6]) //# import("m5_internal.stl");
-		cylinder(r=8.5, h=height, $fn=100);
-    for (a = [0:60:359]) rotate([0, 0, a]) {
-      translate([0, mount_radius, 0])
-			cylinder(r=m3_wide_radius, h=2*height, center=true, $fn=100);
-    }
-    for (a = [-60:120:299]) rotate([0, 0, a]) {
-      translate([0, mount_radius+12, 0])
-			cylinder(r=5, h=2.2*height, center=true, $fn=100);
-    }
-  }
+    	translate([0, 0, push_fit_height-height/2])
+      	cylinder(r=hotend_radius, h=height, $fn=100);
+    	translate([0, 0, -6]) //# import("m5_internal.stl");
+			cylinder(r=8.5, h=height, $fn=100);
+    	
+		for (a = [0:60:359]) rotate([0, 0, a]) 
+		{
+      	translate([0, mount_radius, 0])
+				cylinder(r=m3_wide_radius, h=2*height, center=true, $fn=100);
+    	}
+    
+		for (a = [-60:120:299]) rotate([0, 0, a]) 
+		{
+      	translate([0, mount_radius+12, 0])
+				cylinder(r=5, h=2.2*height, center=true, $fn=100);
+    	}
+  	}
 }
+
 
 module torus(r1, r2)
 {
