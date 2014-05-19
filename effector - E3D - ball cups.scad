@@ -9,6 +9,7 @@ height = 8;
 cone_r1 = 2.5;
 cone_r2 = 14;
 ball_dia = 12.7;
+fudge = 0.2;
 
 module effector() 
 {
@@ -32,8 +33,11 @@ module effector()
 
       for (a = [60:120:359]) rotate([0, 0, a]) {
 			for (s = [-1, 1]) scale([s, 1, 1]) {
-    			translate([separation/2, offset + 2, 8]) rotate([0, 90, 0])
-					sphere(ball_dia/2 + 0.1, $fn=100);
+    			translate([separation/2, offset + 2, 8.5]) rotate([0, 90, 0])
+				{
+					sphere(ball_dia/2 + fudge, $fn=100);
+					%sphere(ball_dia/2 + fudge, $fn=100);
+				}
 			}
       }
 
