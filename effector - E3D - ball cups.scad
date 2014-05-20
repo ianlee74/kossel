@@ -17,9 +17,11 @@ module effector()
 	{
    	union() 
 		{
+			// Main body.
       	cylinder(r=32, h=height, center=true);
 			torus(25, 8.25);
-
+			
+			// Handles
 		  	for (a = [-60:120:299]) rotate([0, 0, a]) 
 			{
       		translate([0, mount_radius+14, 6.5])
@@ -63,7 +65,7 @@ module effector()
 
 module torus(r1, r2)
 {
-	rotate_extrude($fn=200) translate([r1,0,0]) circle(r2);
+	rotate_extrude($fn=50) translate([r1,0,0]) circle(r2);
 }
 
 translate([0, 0, height/2]) effector();
